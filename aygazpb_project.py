@@ -25,6 +25,15 @@ def pc_random_choose_game(): #End of the game, pc choose that it would like to p
     return random.choice([True,False])
 
 
+def continue_game():
+    while True:
+        continue_game = input("\nWould you like to play another game? (y/n): ").capitalize() # for uppercase
+        if continue_game in ['Y', 'N']:
+            return continue_game
+        else:
+            print("\nInvalid input. Please enter 'y' to continue or 'n' to exit.")
+
+
 def rock_paper_scissors_Erdem_Dağlı(): #main function
     game_introduction()
 
@@ -88,14 +97,16 @@ def rock_paper_scissors_Erdem_Dağlı(): #main function
             pc_game_won+=1
 
         print(f"\nYour won game: {player_game_won}, PC's won game: {pc_game_won}")
-
-        continue_game=input("\nWould you like to play another game? (y/n): ").upper() #for uppercase
-
-        if continue_game!= "Y" and not pc_random_choose_game():
-            print("\nGame is over! Thanks for everthing :) )")
+        
+        ct_game=continue_game()
+        
+        if ct_game== "N":
+            print("\nGame is over! Thanks for everthing :)")
             break
-        elif continue_game== "Y" and not pc_random_choose_game():
+        elif ct_game== "Y" and not pc_random_choose_game():
             print("\nYou wanted play but PC didn't :/")
             break
+
+        
 
 rock_paper_scissors_Erdem_Dağlı()
